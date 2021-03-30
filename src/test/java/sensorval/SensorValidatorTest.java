@@ -6,6 +6,7 @@ import static org.junit.Assert.*;
 import java.util.Arrays;
 import java.util.List;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 public class SensorValidatorTest 
@@ -25,15 +26,15 @@ public class SensorValidatorTest
         assertFalse(SensorValidator.validateCurrentreadings(currents));
     }
 
-    @Test
+    @Test(expected = RuntimeException.class)
     public void reportsOkayWhenSOCValuesIsNull()
     {
-        assertTrue(SensorValidator.validateSOCreadings(null));
+        SensorValidator.validateSOCreadings(null);
     }
 
-    @Test
+    @Test(expected = RuntimeException.class)
     public void reportsOkayWhenCurrentValuesIsNull()
     {
-        assertTrue(SensorValidator.validateCurrentreadings(null));
+        SensorValidator.validateCurrentreadings(null);
     }
 }
