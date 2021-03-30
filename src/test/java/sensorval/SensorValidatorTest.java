@@ -1,11 +1,12 @@
 package sensorval;
 
 import static org.junit.Assert.*;
-import jdk.nashorn.internal.AssertsEnabled;
+//import jdk.nashorn.internal.AssertsEnabled;
 
 import java.util.Arrays;
 import java.util.List;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 public class SensorValidatorTest 
@@ -23,5 +24,17 @@ public class SensorValidatorTest
         Double[] readings = {0.03, 0.03, 0.03, 0.33};
         List<Double> currents = Arrays.asList(readings);
         assertFalse(SensorValidator.validateCurrentreadings(currents));
+    }
+
+    @Test(expected = RuntimeException.class)
+    public void reportsOkayWhenSOCValuesIsNull()
+    {
+        SensorValidator.validateSOCreadings(null);
+    }
+
+    @Test(expected = RuntimeException.class)
+    public void reportsOkayWhenCurrentValuesIsNull()
+    {
+        SensorValidator.validateCurrentreadings(null);
     }
 }
